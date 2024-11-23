@@ -8,7 +8,7 @@ import { ICONS } from '@/app/assets/Assets';
 const Sidebar = () => {
     // Define menu items with their names, paths, and associated icons
     const menuItems = [
-        { name: 'Overview', path: '/overview', icon: ICONS.overviewBlack },
+        { name: 'Overview', path: '/dashboard', icon: ICONS.overviewBlack },
         { name: 'Courses', path: '/courses', icon: ICONS.courseBlack },
         { name: 'Settings', path: '/settings', icon: ICONS.settingsBlack },
         // Add more items as needed
