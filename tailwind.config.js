@@ -32,6 +32,7 @@ module.exports = {
       },
       fontFamily: {
         jetbrains: ['JetBrains Mono', 'sans-serif'],
+        poppins: ['Poppins', "sans-serif"]
       },
       animation: {
         'infinite-scroll': 'infinite-scroll 25s linear infinite',

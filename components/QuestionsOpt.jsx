@@ -17,7 +17,7 @@ const QuestionsOpt = ({ questions }) => {
 console.log(selectedIndexes)
   return (
     <>
-      {questions.map((item, i) => (
+      {questions?.map((item, i) => (
         <div className="flex flex-col mb-6" key={i}>
           <h6 className="text-black font-semibold">
             {i + 1}. {item?.question}

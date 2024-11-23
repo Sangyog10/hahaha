@@ -188,6 +188,7 @@ body {
       @apply  border-0 text-dark text-opacity-80 text-[14px];
     }
 
+
     .search-container input::placeholder{
       @apply text-dark text-opacity-50;
     }
