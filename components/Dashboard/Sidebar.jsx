@@ -10,7 +10,7 @@ const Sidebar = () => {
     const menuItems = [
         { name: 'Overview', path: '/dashboard', icon: ICONS.overviewBlack },
         { name: 'Courses', path: '/courses', icon: ICONS.courseBlack },
-        { name: 'Settings', path: '/settings', icon: ICONS.settingsBlack },
+        { name: 'ChatBot', path: '/chat', icon: ICONS.chatBot },
         // Add more items as needed
     ];
 

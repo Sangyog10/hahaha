@@ -317,3 +317,13 @@ body {
 .pause {
   animation-play-state: paused;
 }
+
+
+.hide-scroll{
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}

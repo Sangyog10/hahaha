@@ -1,8 +1,12 @@
+"use client";
+
 import Welcome from "@/components/Dashboard/Welcome"
 import BarChart from "@/components/Dashboard/BarChart"
 import { TrendingUp } from "@mui/icons-material";
 import InProgress from "@/components/Dashboard/InProgress";
 import Notes from "@/components/Dashboard/Notes";
+import { getAllMock } from "@/app/auth/getAllMock";
+import { useEffect } from "react";
 
 const lmsAnalyticsData = [
     { day: "Mo", study: 3 },
@@ -15,7 +19,17 @@ const lmsAnalyticsData = [
 ];
 
 
-const page = () => {
+const Page = () => {
+
+    const getMock = async () => {
+        const data = await getAllMock();
+        console.log(data);
+    }
+
+    useEffect(() => {
+        getMock();
+    }, [])
+
     return (
         <div className="p-6 grid grid-cols-6 w-full flex-1 justify-start gap-4">
             <div className="col-span-3">
@@ -56,4 +70,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

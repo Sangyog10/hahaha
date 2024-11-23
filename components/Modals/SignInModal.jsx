@@ -108,7 +108,9 @@ const SignInModal = ({ state, onClose }) => {
                             </div>
 
                             <div className="flex flex-col gap-3 w-full">
-                                <button className="btn btn-primary w-full py-5 h-[50px]" type="submit">Sign In</button>
+                                <button className="btn btn-primary w-full py-5 h-[50px]" type="submit">
+                                    {isLoading ? "Signing In..." : "Sign In"}
+                                </button>
                             </div>
 
 
