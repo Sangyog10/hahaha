@@ -3,18 +3,30 @@
 import Image from "next/image";
 import { ICONS } from "@/app/assets/Assets"; // Replace with actual paths
 import { useState } from "react";
+import { redirect } from 'next/navigation'
+ 
 
-const QuestionsOpt = ({ questions }) => {
+const QuestionsOpt = ({ questions}) => {
   const [selectedIndexes, setSelectedIndexes] = useState({}); // Tracks selected index for each question
+  const [trackSubmit, setTrackSubmit] = useState(0); // Tracks if the submit button has been clicked
 
-  // Function to update the selected index for a specific question
   const checkIndex = (questionIndex, optionIndex) => {
     setSelectedIndexes((prev) => ({
       ...prev,
       [questionIndex]: optionIndex,
     }));
   };
-console.log(selectedIndexes)
+
+ 
+  const handleSubmit = () => {
+    if(Object.keys(selectedIndexes).length <=0){
+      alert("Please select an option")
+      return;
+    }
+    setTrackSubmit(1)
+    redirect('/test/result')
+  }
+
   return (
     <>
       {questions?.map((item, i) => (
@@ -50,6 +62,13 @@ console.log(selectedIndexes)
           </div>
         </div>
       ))}
+      <button
+        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 disabled:bg-gray-300"
+        onClick={handleSubmit}
+        disabled={trackSubmit}
+       >
+        Submit
+      </button>
     </>
   );
 };
