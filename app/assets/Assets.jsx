@@ -21,7 +21,8 @@ import searchBlack from "./Icons/search-5-svgrepo-com.svg"
 import starSecondary from "./Icons/starSecondary.svg"
 import task from "./Icons/task-svgrepo-com.svg"
 import defaultImage from "./Icons/default.svg"
-
+import chevronRight from "./Icons/right-chevron-svgrepo-com (1).svg"
+import starsFall from "./Icons/star-fall-svgrepo-com.svg"
 
 export const ICONS = {
     crossWhite,
@@ -46,5 +47,7 @@ export const ICONS = {
     searchBlack,
     starSecondary,
     task,
-    defaultImage
+    defaultImage,
+    chevronRight,
+    starsFall
 }

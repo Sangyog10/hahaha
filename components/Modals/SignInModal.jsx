@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ICONS } from "@/app/assets/Assets";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { handleLogin } from "@/app/auth/Login";
 
 
 
@@ -41,24 +42,16 @@ const SignInModal = ({ state, onClose }) => {
         e.preventDefault();
         setIsLoading(true);
 
-        // Use next-auth's signIn method to handle credentials login
-        // const res = await signIn("credentials", {
-        //     redirect: false,
-        //     email,
-        //     password,
-        // });
-
-        // if (res?.error) {
-        //     setErrors((prevErrors) => ({
-        //         ...prevErrors,
-        //         password: "Invalid credentials. Please try again.",
-        //     }));
-        // } else if (res?.url) {
-        //     redirect(res.url);
-        // } else {
-        //     redirect("/overview");
-        // }
-
+        const data = await handleLogin(email, password);
+        console.log(data);
+        if (data?.error) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: data.error,
+            }));
+        } else {
+            redirect("/dashboard");
+        }
         setIsLoading(false);
     };
 

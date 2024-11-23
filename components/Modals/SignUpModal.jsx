@@ -3,14 +3,17 @@
 import { useState } from "react";
 import { ICONS } from "@/app/assets/Assets";
 import Image from "next/image";
+import { handleSignUp } from "@/app/auth/Register";
+import { redirect } from "next/navigation";
 
 const SignUpModal = ({ state, onClose }) => {
+
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({ name: "", email: "", password: "" });
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const [role, setRole] = useState("student");
 
 
     const handleNameChange = (e) => {
@@ -36,13 +39,7 @@ const SignUpModal = ({ state, onClose }) => {
         }));
     };
 
-    const toggleRole = () => {
-        setRole((prevRole) => prevRole === "student" ? "instructor" : "student");
-    };
 
-    const handleSignUp = async (e) => {
-        e.preventDefault();
-    }
 
     const handlePasswordChange = (e) => {
         const value = e.target.value;
@@ -59,6 +56,23 @@ const SignUpModal = ({ state, onClose }) => {
         setIsPasswordVisible((prev) => !prev);
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Call the handleSignUp function to handle the sign up process
+        const data = await handleSignUp(name, email, password);
+        console.log(data);
+
+        if (data?.error) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: data.error,
+            }));
+        } else {
+            redirect("/dashboard");
+        }
+    }
+
     return (
         <>
             {state && (
@@ -73,7 +87,7 @@ const SignUpModal = ({ state, onClose }) => {
                         </div>
 
                         {/* Modal Body */}
-                        <form className="modal-body flex flex-col items-center gap-8 w-full" onSubmit={handleSignUp}>
+                        <form className="modal-body flex flex-col items-center gap-8 w-full" onSubmit={handleSubmit}>
                             {/* Name Input */}
                             <div className="w-full">
                                 <input
