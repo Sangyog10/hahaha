@@ -67,11 +67,11 @@ body {
 
   /* Buttons */
   input{
-    @apply border-[1px] border-gray text-normalText text-gray rounded-[4px] px-3 py-3 bg-transparent focus:border-[1px] focus:border-gray focus:outline-none;
+    @apply border-[1px] border-gray text-p text-gray rounded-[4px] px-3 py-3 bg-transparent focus:border-[1px] focus:border-gray focus:outline-none;
   }
 
   .btn{
-    @apply px-[80px] py-[16px] text-normalText font-bold rounded-[8px] flex items-center justify-center;
+    @apply px-[80px] py-[16px] text-p font-bold rounded-[8px] flex items-center justify-center;
   }
 
   .btn-primary{
@@ -79,7 +79,7 @@ body {
   }
 
   .menu-item{
-    @apply flex items-center cursor-pointer text-mediumText px-4 p-3 rounded-full;
+    @apply flex items-center cursor-pointer text-p px-4 p-3 rounded-full;
   }
 
   .menu-item.active{
@@ -88,7 +88,7 @@ body {
 
   
   .tag{
-    @apply bg-lightMint px-4 py-2 w-fit rounded-full text-smallText text-secondary flex items-center gap-1 font-medium;
+    @apply bg-lightMint px-4 py-2 w-fit rounded-full text-sm text-secondary flex items-center gap-1 font-medium;
   }
 }
 
