@@ -7,7 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // Custom Colors for darkModes and light Modes
+      fontSize: {
+        h1: ['56px', { lineHeight: '62.6px' }],
+        h2: ['48px', { lineHeight: '52.8px' }],
+        h3: ['40px', { lineHeight: '44px' }],
+        h4: ['32px', { lineHeight: '35.2px' }],
+        h5: ['24px', { lineHeight: '26.4px' }],
+        h6: ['20px', { lineHeight: '22px' }],
+        p: ['16px', { lineHeight: '22.4px' }],
+        lg: ['20px', { lineHeight: '28px' }],
+        md: ['18px', { lineHeight: '25.2px' }],
+        sm: ['14px', { lineHeight: '19.6px' }]
+      }, 
       colors: {
         "primary": "#fff",
         "secondary": "#7147ec",
