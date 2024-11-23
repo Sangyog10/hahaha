@@ -23,6 +23,7 @@ import task from "./Icons/task-svgrepo-com.svg"
 import defaultImage from "./Icons/default.svg"
 import chevronRight from "./Icons/right-chevron-svgrepo-com (1).svg"
 import starsFall from "./Icons/star-fall-svgrepo-com.svg"
+import clock from "./Icons/clock-circle-svgrepo-com.svg"
 
 export const ICONS = {
     crossWhite,
@@ -49,5 +50,6 @@ export const ICONS = {
     task,
     defaultImage,
     chevronRight,
-    starsFall
+    starsFall,
+    clock
 }
