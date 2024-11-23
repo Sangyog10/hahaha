@@ -21,7 +21,7 @@ const Welcome = () => {
 
 
     return (
-        <div className='w-100 p-4  flex flex-col gap-3'>
+        <div className='w-full p-4 flex flex-col gap-3'>
             <div className="flex flex-col">
                 <h2 className="text-dark ">
                     {greeting},<span className='text-gradient font-jetbrains'>Prayush!</span>
