@@ -31,7 +31,7 @@ module.exports = {
         "danger": "#ff5e5e",
       },
       fontFamily: {
-        hanken: ['Hanken Grotesk', 'sans-serif'],
+        jetbrains: ['JetBrains Mono', 'sans-serif'],
       },
       animation: {
         'infinite-scroll': 'infinite-scroll 25s linear infinite',
