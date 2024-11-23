@@ -193,7 +193,7 @@ body {
     }
 
     .search-container{
-      @apply bg-transparent border-back drop-shadow-lg rounded-lg px-2 py-1 w-[300px];
+      @apply bg-transparent border-back drop-shadow-lg rounded-lg  py-1;
     }
 
     .small-card{
