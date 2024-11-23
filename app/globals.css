@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -19,19 +19,19 @@ body {
 @layer base {
   /* Fonts */
   h1 {
-    @apply font-hanken font-bold text-[48px] text-dark;
+    @apply font-jetbrains font-bold text-[48px] text-dark;
   }
 
   h2{
-    @apply font-hanken font-bold text-[32px] text-dark;
+    @apply font-jetbrains font-bold text-[32px] text-dark;
   }
 
   h3{
-    @apply font-hanken font-bold text-[24px] text-dark;
+    @apply font-jetbrains font-bold text-[24px] text-dark;
   }
 
   p {
-    @apply font-hanken font-medium text-[16px] text-dark;
+    @apply font-jetbrains font-medium text-[16px] text-dark;
   }
 }
 
@@ -46,7 +46,7 @@ body {
   }
 
   .logo-text {
-    @apply font-hanken font-bold text-[28px] leading-[32px] text-dark cursor-default select-none;
+    @apply font-jetbrains font-bold text-[28px] leading-[32px] text-dark cursor-default select-none;
   }
 
   .flex-center {
@@ -160,7 +160,7 @@ body {
     }
 
     .side-bar{
-      @apply w-[300px] h-[100vh] fixed top-[0] left-0 z-50 border-r-[2px] border-gray-200;
+      @apply w-[250px] h-[100vh] sticky top-[0] left-0 z-50 border-r-[2px] border-gray-200;
     }
 
     .side-bar li {
@@ -179,16 +179,13 @@ body {
       @apply opacity-100;
     }
 
-    .content{
-      @apply w-[calc(100vw-300px)] ml-[300px] min-h-[100vh] p-6 bg-white flex flex-col gap-8 overflow-y-scroll;
-    }
 
     .btn-tertiary{
       @apply bg-dark text-white h-fit py-3 rounded-xl;
     }
 
     input.search-input{
-      @apply bg-transparent border-0 text-dark text-opacity-80 text-[14px];
+      @apply  border-0 text-dark text-opacity-80 text-[14px];
     }
 
     .search-container input::placeholder{
@@ -196,7 +193,7 @@ body {
     }
 
     .search-container{
-      @apply bg-light border-back drop-shadow-lg rounded-lg px-2 py-1 w-[300px];
+      @apply bg-transparent border-back drop-shadow-lg rounded-lg px-2 py-1 w-[300px];
     }
 
     .small-card{
