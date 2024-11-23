@@ -1,0 +1,130 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #566CD2;
+  --secondary: #0F1D35;
+  --light-blue: #DDE2F6;
+  --mint: #56C3D2;
+  --light-mint: #DDF3F6;
+  --gray:#858A94;
+  --light-gray: #EAEBEF;
+  --danger: #D62E2E;
+}
+
+body {
+  color:white;
+  font-family: "JetBrains Mono", Helvetica, sans-serif;
+}
+
+
+@layer base{
+
+  /* Typography */
+  h1 {
+  @apply text-h1;
+  }
+
+  h2 {
+  @apply text-h2;
+  }
+
+  h3 {
+  @apply text-h3;
+  }
+
+  h4 {
+  @apply text-h4;
+  }
+
+  h5 {
+  @apply text-h5;
+  }
+
+  h6 {
+  @apply text-h6;
+  }
+
+  p {
+  @apply text-p;
+  }
+
+  .text-lg{
+    @apply text-lg;
+  }
+
+  .text-md{
+    @apply text-md;
+  }
+
+  .text-sm{
+    @apply text-md;
+  }
+
+  /* Buttons */
+  input{
+    @apply border-[1px] border-gray text-normalText text-gray rounded-[4px] px-3 py-3 bg-transparent focus:border-[1px] focus:border-gray focus:outline-none;
+  }
+
+  .btn{
+    @apply px-[80px] py-[16px] text-normalText font-bold rounded-[8px] flex items-center justify-center;
+  }
+
+  .btn-primary{
+    @apply text-white bg-primary;
+  }
+
+  .menu-item{
+    @apply flex items-center cursor-pointer text-mediumText px-4 p-3 rounded-full;
+  }
+
+  .menu-item.active{
+    @apply text-primary bg-lightGray;
+  }
+
+  
+  .tag{
+    @apply bg-lightMint px-4 py-2 w-fit rounded-full text-smallText text-secondary flex items-center gap-1 font-medium;
+  }
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--gray);
+    font-size: inherit; 
+    font-family: inherit;
+    line-height: inherit; 
+    transition: background-color 5000s ease-in-out 0s; 
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.hide-scroll {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Edge */
+}
+
+select{
+  border-radius: 10px !important;
+  border: 1px solid #858A94;
+  padding: 10px !important; 
+  font-size: 16px !important;
+}
+
+select option{
+  padding: 10px !important;
+}
+
+select option:checked{
+  background-color: #EAEBEF !important;
+}
+
