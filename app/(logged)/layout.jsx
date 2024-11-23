@@ -2,10 +2,13 @@ import DashboardNav from "@/components/Dashboard/DashboardNav";
 import Sidebar from "@/components/Dashboard/Sidebar";
 import { isAuthenticated } from "../auth/isLoggedIn";
 import { redirect } from "next/navigation";
+
 export default function RootLayout({ children }) {
-    if (!isAuthenticated) {
-        redirect("/");
+    // Call isAuthenticated to check if the user is authenticated
+    if (!isAuthenticated()) {
+        redirect("/"); // Redirect to the home page
     }
+
     return (
         <div className="h-full flex">
             <Sidebar />
