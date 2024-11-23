@@ -24,6 +24,19 @@ import defaultImage from "./Icons/default.svg"
 import chevronRight from "./Icons/right-chevron-svgrepo-com (1).svg"
 import starsFall from "./Icons/star-fall-svgrepo-com.svg"
 import clock from "./Icons/clock-circle-svgrepo-com.svg"
+import chatBot from "./Icons/bot-svgrepo-com.svg"
+import filterAdd from "./Icons/filter-add-svgrepo-com.svg"
+import filterRemove from "./Icons/filter-remove-svgrepo-com.svg"
+import level from "./Icons/level-svgrepo-com.svg"
+import sandClock from "./Icons/sand-clock-svgrepo-com.svg";
+import assignmentOutline from "./Icons/assignmentOutline.svg";
+import courseOutline from "./Icons/courseOutline.svg";
+import quiz from "./Icons/idea-svgrepo-com (1).svg";
+import boxChecked from "./Icons/checkbox-checked-svgrepo-com.svg"
+import boxUnchecked from "./Icons/checkbox-unchecked-svgrepo-com (1).svg"
+import radioChecked from "./Icons/radio-button-checked-svgrepo-com.svg"
+import radioUnchecked from "./Icons/radio-button-unchecked-svgrepo-com.svg"
+
 
 export const ICONS = {
     crossWhite,
@@ -51,5 +64,17 @@ export const ICONS = {
     defaultImage,
     chevronRight,
     starsFall,
-    clock
+    clock,
+    chatBot,
+    filterAdd,
+    filterRemove,
+    level,
+    sandClock,
+    assignmentOutline,
+    courseOutline,
+    quiz,
+    boxChecked,
+    boxUnchecked,
+    radioChecked,
+    radioUnchecked
 }
