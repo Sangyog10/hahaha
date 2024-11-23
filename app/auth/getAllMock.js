@@ -1,24 +1,21 @@
+import axios from "axios";
+
 export const getAllMock = async () => {
-    try {
-        const res = await fetch("http://localhost:4000/api/v1/mocktest", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(),
-        });
+  try {
+    // Make a GET request using Axios
+    const res = await axios.get("http://localhost:4000/api/v1/mocktest", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true, // Ensure cookies (if any) are sent with the request
+    });
 
-        const data = await res.json();
-        console.log(data);
+    console.log(res.data); // Log the response data
 
-        if (!res.ok) {
-            console.log("fetching failed")
-            throw new Error(data.message || 'Fetch Failed');
-        }
-
-        return data;
-    } catch (error) {
-        console.error('Error:', error.message);
-        return { error: error.message };
-    }
+    return res.data; // Return the response data
+  } catch (error) {
+    // Handle errors (network errors, API errors)
+    console.error("Error:", error.response?.data || error.message);
+    return { error: error.response?.data?.message || error.message };
+  }
 };
