@@ -22,17 +22,16 @@ import {
     Title,
     Save,
 } from '@mui/icons-material';
-import AlertToast from "./AlertToast"
+import AlertToast from "./AlertToast";
 
-const MarkdownEditor = () => {
+const MarkdownEditor = ({ title: initialTitle, content: initialContent, isEdit, onClose }) => {
     const mdParser = MarkdownIt({ html: true }).use(doMarkdownIt, {});
-    const [markdown, setMarkdown] = useState('# Welcome to Markdown Editor\n\nStart writing...');
-    const [title, setTitle] = useState('Markdown Editor');
+    const [markdown, setMarkdown] = useState(initialContent || '# Welcome to Markdown Editor\n\nStart writing...');
+    const [noteTitle, setNoteTitle] = useState(initialTitle || 'Markdown Editor');
     const [showToast, setShowToast] = useState(false);
 
     // Close the toast
     const closeToast = () => setShowToast(false);
-
 
     const insertMarkdown = (syntax) => {
         const textarea = document.getElementById('markdown-editor');
@@ -49,33 +48,31 @@ const MarkdownEditor = () => {
     };
 
     const downloadContent = () => {
-        // Pass title and markdown content to a function or save logic
-        console.log('Title:', title);
+        console.log('Title:', noteTitle);
         console.log('Content:', markdown);
 
         const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8;' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `${title}.md`;
+        link.download = `${noteTitle}.md`;
         link.click();
     };
 
     const saveContent = async () => {
+        if (!isEdit) return;
+
         try {
-            console.log('Title:', title);
+            console.log('Title:', noteTitle);
             console.log('Content:', markdown);
 
-            // Pass title and content as separate arguments
-            const data = await submitNote(title, markdown);
+            const data = await submitNote(noteTitle, markdown);
             console.log('Response from API:', data);
 
             setShowToast(true);
-
         } catch (error) {
             console.error('Error saving note:', error);
         }
     };
-
 
     return (
         <div className="flex h-screen w-full">
@@ -83,20 +80,21 @@ const MarkdownEditor = () => {
                 <AlertToast message="Note saved successfully!" type="success" onClose={closeToast} />
             )}
 
-
             {/* Editor Section */}
             <Card className="w-1/2 h-[80%] shadow-md">
                 <CardContent className="h-full flex flex-col">
                     {/* Editable Title */}
-                    <TextField
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Enter the title here..."
-                        variant="outlined"
-                        fullWidth
-                        margin="dense"
-                        className="mb-4"
-                    />
+                    {isEdit && (
+                        <TextField
+                            value={noteTitle}
+                            onChange={(e) => setNoteTitle(e.target.value)}
+                            placeholder="Enter the title here..."
+                            variant="outlined"
+                            fullWidth
+                            margin="dense"
+                            className="mb-4"
+                        />
+                    )}
 
                     <Divider className="mb-4" />
 
@@ -144,15 +142,17 @@ const MarkdownEditor = () => {
                         minRows={15}
                     />
 
-                    <Button
-                        onClick={saveContent}
-                        variant="contained"
-                        color="secondary"
-                        startIcon={<Save />}
-                        className="mt-4 self-end"
-                    >
-                        Save
-                    </Button>
+                    {isEdit && (
+                        <Button
+                            onClick={saveContent}
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<Save />}
+                            className="mt-4 self-end"
+                        >
+                            Save
+                        </Button>
+                    )}
                 </CardContent>
             </Card>
 
@@ -160,7 +160,7 @@ const MarkdownEditor = () => {
             <Card className="w-1/2 h-[90%] shadow-md">
                 <CardContent className="h-full">
                     <TextField
-                        value={title}
+                        value={noteTitle}
                         variant="outlined"
                         disabled
                         fullWidth
@@ -170,14 +170,6 @@ const MarkdownEditor = () => {
                     <Divider className="mb-4" />
                     <div
                         className="prose prose-lg max-w-none h-full overflow-auto"
-                        style={{
-                            '--tw-prose-h1': 'none',
-                            '--tw-prose-h2': 'none',
-                            '--tw-prose-h3': 'none',
-                            '--tw-prose-h4': 'none',
-                            '--tw-prose-h5': 'none',
-                            '--tw-prose-h6': 'none',
-                        }}
                     >
                         <div
                             dangerouslySetInnerHTML={{ __html: mdParser.render(markdown) }}

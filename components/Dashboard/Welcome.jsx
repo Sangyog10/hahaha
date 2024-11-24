@@ -33,12 +33,11 @@ const Welcome = () => {
     }
 
     const navigateToChat = (message) => {
-        // Use Next.js router.push to navigate and pass message as a query parameter
-        router.push({
-            pathname: '/chat',  // The path to your Chat page
-            query: { message: message }  // Pass the message as query parameter
-        })
+        // Construct the URL with the query parameter
+        const url = `/chat?message=${encodeURIComponent(message)}`
+        router.push(url)  // Use router.push with the URL as a string
     }
+
 
     return (
         <div className='w-full p-4 flex flex-col gap-3'>
