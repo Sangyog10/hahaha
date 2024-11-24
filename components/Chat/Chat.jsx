@@ -32,9 +32,17 @@ const Chat = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setHistory((prevHistory) => [...prevHistory, ["user", messageText]]);
 
+    // Create a formatted history string
+    let formattedHistory = ``;
+
+    // Append each message from history to the formattedHistory string
+    formattedHistory += history.map(([sender, text]) => {
+      return `${sender === "user" ? "student" : "gemini"}: <<${text}>>`;
+    }).join("\n");
+
     try {
       // Fetch bot's response
-      const response = await sendMessage(history, messageText);
+      const response = await sendMessage(formattedHistory, messageText);
 
       if (response.error) {
         console.error("Error:", response.error);
@@ -75,7 +83,7 @@ const Chat = () => {
     const isFirst =
       index === 0 || messages[index - 1]?.sender !== messages[index]?.sender;
 
-    if (isFirst && isLast) return "rounded-full"; // Single message
+    if (isFirst && isLast) return "rounded-[40px]"; // Single message
     if (isFirst)
       return isUser
         ? "rounded-t-full rounded-bl-full"
@@ -87,6 +95,13 @@ const Chat = () => {
     return isUser
       ? "rounded-bl-full rounded-tl-full"
       : "rounded-br-full rounded-tr-full"; // Middle message
+  };
+
+  // Function to format the message text (for bold, italics, etc.)
+  const formatMessage = (messageText) => {
+    // Example: Convert any **text** to bold, *text* to italic
+    return messageText.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>") // Bold
+      .replace(/\*(.*?)\*/g, "<i>$1</i>"); // Italics
   };
 
   return (
@@ -106,7 +121,7 @@ const Chat = () => {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex items-center gap-2 mb-[4px] ${message.sender === "user" ? "justify-end" : "justify-start"
+                className={`flex items-start p-2 gap-2 mb-[4px] w-[100%] ${message.sender === "user" ? "justify-end" : "justify-start"
                   }`}
               >
                 {message.sender === "bot" && (
@@ -117,7 +132,7 @@ const Chat = () => {
                   />
                 )}
                 <div
-                  className={`p-3 shadow-sm max-w-xs ${message.sender === "user"
+                  className={`p-3 px-6 shadow-sm max-w-[50%] break-words ${message.sender === "user"
                     ? "bg-secondary text-white"
                     : "bg-white text-black border-[0.3px] border-gray-400"
                     } ${getBorderRadius(
@@ -125,9 +140,9 @@ const Chat = () => {
                       index,
                       messages
                     )}`}
-                >
-                  {message.text}
-                </div>
+                  style={{ wordBreak: "break-word", maxWidth: "50%" }}
+                  dangerouslySetInnerHTML={{ __html: formatMessage(message.text) }} // Render formatted text
+                />
               </div>
             ))}
           </div>
@@ -137,7 +152,7 @@ const Chat = () => {
             <div className="flex-1 relative">
               <input
                 type="text"
-                className="w-full p-2 border-[0.3px] border-lightGray rounded-full"
+                className="w-full p-2 border-[0.3px] border-lightGray rounded-[40px]"
                 placeholder="Type a message"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -155,7 +170,7 @@ const Chat = () => {
                   input.value = ""; // Clear input after sending
                 }
               }}
-              className="bg-secondary text-white p-2 rounded-full"
+              className="bg-secondary text-white p-2 rounded-[40px]"
             >
               <Send />
             </button>
