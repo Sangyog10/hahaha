@@ -2,7 +2,7 @@
 import { ICONS } from '@/app/assets/Assets'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'  // Import useRouter
+import { useRouter } from 'next/navigation'  // Import useRouter for Next.js navigation
 
 const Welcome = () => {
     const [greeting, setGreeting] = useState('')
@@ -33,10 +33,10 @@ const Welcome = () => {
     }
 
     const navigateToChat = (message) => {
-        // Use the router to navigate and pass message as query parameter
+        // Use Next.js router.push to navigate and pass message as a query parameter
         router.push({
-            pathname: '/chat',  // The Chat page path
-            query: { message: message }  // Pass message as query param
+            pathname: '/chat',  // The path to your Chat page
+            query: { message: message }  // Pass the message as query parameter
         })
     }
 
