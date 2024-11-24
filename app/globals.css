@@ -18,27 +18,27 @@ body {
 
 @layer base {
   /* Fonts */
-  h1 {
-    @apply font-jetbrains font-bold text-[48px] text-dark;
-  }
-
-  h2{
-    @apply font-jetbrains font-bold text-[32px] text-dark;
-  }
-
-  h3{
-    @apply font-jetbrains font-bold text-[24px] text-dark;
-  }
-
-  p {
-    @apply font-jetbrains font-medium text-[16px] text-dark;
-  }
 }
 
 @layer utilities {
-
+  
+  h1 {
+    @apply font-jetbrains font-bold text-[48px] text-dark !important;
+  }
+  
+  h2{
+    @apply font-jetbrains font-bold text-[32px] text-dark !important;
+  }
+  
+  h3{
+    @apply font-jetbrains font-bold text-[24px] text-dark !important;
+  }
+  
+  p {
+    @apply font-jetbrains font-medium text-[16px] !important;
+  }
   .body,.html{
-    @apply max-h-[100vh] h-[100vh] min-h-[100vh] overflow-hidden w-full;
+    @apply max-h-[100vh] h-[100vh] min-h-[100vh] overflow-hidden w-full !important;
   }
 
   nav{
@@ -156,7 +156,7 @@ body {
     }
 
     input{
-      @apply py-3 bg-white text-dark p-2 border-back shadow-sm border-2 inset-2 w-full rounded-md focus:border-2 focus:border-dark focus:outline-none text-[16px] leading-[16px];
+      @apply py-3 bg-white text-dark p-2 border-back shadow-sm border-2 inset-2 w-full rounded-md focus:border-2 focus:border-dark focus:outline-none text-[16px] leading-[16px] !important;
     }
 
     .side-bar{
@@ -185,7 +185,7 @@ body {
     }
 
     input.search-input{
-      @apply  border-0 text-dark text-opacity-80 text-[14px];
+      @apply  border-0 text-dark text-opacity-80 text-[14px] !important;
     }
 
 

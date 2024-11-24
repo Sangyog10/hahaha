@@ -1,21 +1,24 @@
-"use client"
+"use client";
 
 import Link from 'next/link';
-import Image from 'next/image'; // Ensure you have Image component from next/image.
+import Image from 'next/image';
+import { usePathname } from 'next/navigation'; // Use usePathname instead of useRouter
 import { ICONS } from '@/app/assets/Assets';
 
-
 const Sidebar = () => {
+    const pathname = usePathname(); // Get the current path
+
     // Define menu items with their names, paths, and associated icons
     const menuItems = [
         { name: 'Overview', path: '/dashboard', icon: ICONS.overviewBlack },
         { name: 'Courses', path: '/courses', icon: ICONS.courseBlack },
         { name: 'ChatBot', path: '/chat', icon: ICONS.chatBot },
+        { name: 'Notes', path: '/notes', icon: ICONS.assignmentOutline },
         // Add more items as needed
     ];
 
-    // get the current active menu item from the URL
-    const activeMenu = menuItems.find((item) => window.location.pathname.includes(item.path))?.name;
+    // Determine the active menu item based on the current path
+    const activeMenu = menuItems.find((item) => pathname?.includes(item.path))?.name;
 
     return (
         <div className="side-bar padding-lg flex flex-col items-start justify-between">
@@ -41,10 +44,8 @@ const Sidebar = () => {
                     ))}
                 </ul>
             </div>
-            <button className="text-dark text-opacity-80 w-full text-[14px] flex gap-2 items-center justify-start"
-
-            >
-                <Image src={ICONS.logoutBlack} width={24} alt="logout" />
+            <button className="text-dark text-opacity-80 w-full text-[14px] flex gap-2 items-center justify-start">
+                <Image src={ICONS.logoutBlack} width={24} height={24} alt="logout" />
                 <span>Logout</span>
             </button>
         </div>

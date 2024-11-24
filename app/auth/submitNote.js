@@ -1,10 +1,11 @@
 import axios from "axios";
 
-export const getAllNotes = async (title, content) => {
+export const submitNote = async (title, content) => {
     try {
         // Make a POST request using Axios
-        const res = await axios.get(
+        const res = await axios.post(
             "http://localhost:4000/api/v1/note",
+            { title, content },
             {
                 headers: {
                     "Content-Type": "application/json",

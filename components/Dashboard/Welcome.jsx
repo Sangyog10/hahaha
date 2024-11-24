@@ -35,7 +35,7 @@ const Welcome = () => {
                 </div>
             </div>
             <div className="search-container relative">
-                <input type="text" className='w-100 border-[0.3px] border-gray-400 bg-transparent' placeholder='How can I...' />
+                <input type="text" className='w-100 border-[0.3px] py-3 px-2 border-gray-400 bg-transparent' placeholder='How can I...' />
                 <Image src={ICONS.chevronRight} alt="go" className='size-8 absolute top-[50%] translate-y-[-50%] right-2 bg-transparent cursor-pointer' />
             </div>
         </div>

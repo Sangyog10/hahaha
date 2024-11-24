@@ -38,6 +38,7 @@ import radioChecked from "./Icons/radio-button-checked-svgrepo-com.svg"
 import radioUnchecked from "./Icons/radio-button-unchecked-svgrepo-com.svg"
 import fullScreen from "./Icons/maximize-svgrepo-com.svg"
 import options from "./Icons/three-dots-vertical-svgrepo-com (1).svg"
+import close from "./Icons/close-svgrepo-com (1).svg"
 
 
 export const ICONS = {
@@ -80,5 +81,6 @@ export const ICONS = {
     radioChecked,
     radioUnchecked,
     fullScreen,
-    options
+    options,
+    close
 }
