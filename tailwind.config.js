@@ -18,7 +18,7 @@ module.exports = {
         lg: ['20px', { lineHeight: '28px' }],
         md: ['18px', { lineHeight: '25.2px' }],
         sm: ['14px', { lineHeight: '19.6px' }]
-      }, 
+      },
       colors: {
         "primary": "#fff",
         "secondary": "#7147ec",
@@ -50,6 +50,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
+
 };
 

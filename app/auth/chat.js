@@ -1,7 +1,7 @@
 
 export const sendMessage = async (history, prompt) => {
     try {
-        const res = await fetch("https://d758-27-34-70-65.ngrok-free.app/chatbot", {
+        const res = await fetch("http://127.0.0.1:5000/chatbot", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -2,38 +2,20 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Send } from "@mui/icons-material";
-import { io } from "socket.io-client";
+import { sendMessage } from "@/app/auth/chat"; // Import sendMessage function
 
 const Chat = () => {
   const [messages, setMessages] = useState([
     {
       text: "Hello! How can I help you today?",
       sender: "bot",
-      avatar:
-        "https://path.to.bot.avatar", // Replace with actual bot avatar URL
+      avatar: "https://path.to.bot.avatar", // Replace with actual bot avatar URL
     },
   ]);
   const chatContainerRef = useRef(null);
 
-  // WebSocket connection
-  useEffect(() => {
-    const socket = io("https://51ee-27-34-70-65.ngrok-free.app", {
-      transports: ["websocket"],
-    });
-
-    // Listen for bot responses
-    socket.on("botResponse", (botMessage) => {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: botMessage, sender: "bot", avatar: "https://path.to.bot.avatar" }, // Bot's response
-      ]);
-    });
-
-    // Cleanup WebSocket connection on unmount
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  // Maintain the chat history for the bot
+  const [history, setHistory] = useState([]);
 
   // Auto-scroll to the latest message
   useEffect(() => {
@@ -45,24 +27,44 @@ const Chat = () => {
   const handleSendMessage = async (messageText) => {
     if (!messageText.trim()) return;
 
-    // Add user's message to the chat
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { text: messageText, sender: "user" },
-    ]);
+    // Add user's message to the chat and update history
+    const userMessage = { text: messageText, sender: "user" };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setHistory((prevHistory) => [...prevHistory, ["user", messageText]]);
 
-    // Emit user's message to the server
-    const res = await fetch("https://51ee-27-34-70-65.ngrok-free.app", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    try {
+      // Fetch bot's response
+      const response = await sendMessage(history, messageText);
 
-    const data = await res.json();
-    console.log(data);
-
-    socket.emit("userMessage", data.response);
+      if (response.error) {
+        console.error("Error:", response.error);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            text: "Oops! Something went wrong. Please try again.",
+            sender: "bot",
+            avatar: "https://path.to.bot.avatar", // Replace with actual bot avatar URL
+          },
+        ]);
+      } else {
+        const botMessage = response.response || "I'm here to help!";
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: botMessage, sender: "bot", avatar: "https://path.to.bot.avatar" },
+        ]);
+        setHistory((prevHistory) => [...prevHistory, ["bot", botMessage]]);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          text: "Failed to connect to the chatbot. Please try again later.",
+          sender: "bot",
+          avatar: "https://path.to.bot.avatar", // Replace with actual bot avatar URL
+        },
+      ]);
+    }
   };
 
   // Define message bubble border radius based on context
