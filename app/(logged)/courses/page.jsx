@@ -111,7 +111,7 @@ const Page = () => {
                             filteredCourses.map((course) => (
                                 <Link
                                     key={course._id}
-                                    href={`/courses/${encodeURIComponent(course.title)}`}
+                                    href={`/courses/${course._id}`}
                                 >
                                     <CourseCard
                                         title={course.title}

@@ -21,7 +21,7 @@ const Sidebar = () => {
     const activeMenu = menuItems.find((item) => pathname?.includes(item.path))?.name;
 
     return (
-        <div className="side-bar padding-lg flex flex-col items-start justify-between">
+        <div className="side-bar bg-white text-dark padding-lg flex flex-col items-start justify-between">
             <div className="flex flex-col gap-12 w-full">
                 <div className="logo-text">Ed<span className='text-secondary'>Tech</span></div>
                 <ul className="side-menus flex flex-col gap-5 w-full">

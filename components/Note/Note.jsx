@@ -1,36 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { ICONS } from '@/app/assets/Assets';
-import MarkdownEditor from '@/components/Utilities/MarkdownEditor';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { ICONS } from "@/app/assets/Assets";
+import MarkdownEditor from "@/components/Utilities/MarkdownEditor";
 
-const Note = ({ note = null, onClose }) => {
-    const [isModal, setIsModal] = useState(true); // State to toggle between modal and full-page view
-    const [noteContent, setNoteContent] = useState(note || { title: '', content: '' }); // Initialize with note data
+const Note = ({
+    note = null, // Note data
+    onClose, // Callback to close the modal or full-page view
+    isEdit = false, // Determines if the note is in edit mode
+    isModal = true, // Determines if the note is shown as a modal
+}) => {
+    const [isFullPage, setIsFullPage] = useState(!isModal); // Tracks modal or full-page view
+    const [noteContent, setNoteContent] = useState(note || { title: "", content: "" }); // Tracks note data
 
-    // Prevent background scrolling when the modal is open
+    // Prevent background scrolling in modal mode
     useEffect(() => {
-        if (isModal) {
-            document.body.style.overflow = 'hidden';
+        if (isFullPage || !isModal) {
+            document.body.style.overflow = "";
         } else {
-            document.body.style.overflow = '';
+            document.body.style.overflow = "hidden";
         }
 
         return () => {
-            document.body.style.overflow = ''; // Cleanup on unmount
+            document.body.style.overflow = ""; // Cleanup on unmount
         };
-    }, [isModal]);
+    }, [isFullPage, isModal]);
 
     const handleFullScreenClick = () => {
-        setIsModal(false);
-    };
-
-    const handleChange = (field, value) => {
-        setNoteContent((prev) => ({ ...prev, [field]: value }));
+        setIsFullPage(true);
     };
 
     return (
         <>
-            {isModal ? (
+            {!isFullPage ? (
                 // Modal View
                 <div className="fixed inset-0 z-[10000] bg-white bg-opacity-75 flex items-center justify-center">
                     <div className="relative bg-white border-[0.3px] border-gray-400 shadow-md rounded-2xl w-[80vw]  h-[90vh] overflow-hidden">
@@ -49,29 +50,37 @@ const Note = ({ note = null, onClose }) => {
                                 onClick={onClose}
                             />
                         </div>
-                        {/* Content */}
-                        <div className="p-4 text-dark flex flex-col h-full">
-                            <div className="min-h-screen bg-white flex items-center justify-center">
-                                <MarkdownEditor />
-                            </div>
+                        {/* MarkdownEditor in Modal */}
+                        <div className="p-4 h-full">
+                            <MarkdownEditor
+                                title={noteContent.title}
+                                content={noteContent.content}
+                                isEdit={isEdit}
+                                onClose={onClose}
+                            />
                         </div>
                     </div>
                 </div>
             ) : (
-                // Full Page View
-                <div className="w-full h-full bg-black">
+                // Full-Page View
+                <div className="w-full h-full bg-white">
                     <div className="flex items-center justify-between w-full border-b-[0.3px] border-gray-300 p-3">
                         <h1 className="text-dark">Full Page Note</h1>
                         <Image
-                            src={ICONS.options}
+                            src={ICONS.close}
                             alt="close"
                             className="w-5 h-5 cursor-pointer"
                             onClick={onClose}
                         />
                     </div>
-                    <div className="p-4 text-dark">
-                        <h2 className="text-lg font-bold">{noteContent.title || 'Untitled Note'}</h2>
-                        <p>{noteContent.content || 'No content yet...'}</p>
+                    {/* MarkdownEditor in Full-Page View */}
+                    <div className="p-4">
+                        <MarkdownEditor
+                            title={noteContent.title}
+                            content={noteContent.content}
+                            isEdit={isEdit}
+                            onClose={onClose}
+                        />
                     </div>
                 </div>
             )}
